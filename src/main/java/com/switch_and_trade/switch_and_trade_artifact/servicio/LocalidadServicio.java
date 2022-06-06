@@ -44,19 +44,17 @@ public class LocalidadServicio {
 //fin metodos basicos
 
 // inicio metodos personalizados
+    public List<Localidad> traerTodoOrdenNombreAsc(){
+        return localidadRepositorio.traerTodoOrdenNombreAsc();
+    }
+    List<Localidad> traerTodoEliminado(){
+        return localidadRepositorio.traerTodoEliminado();
+    }
 
-
+    List<Localidad> traerTodoNoEliminado(){
+        return localidadRepositorio.traerTodoNoEliminado();
+    }
 
 // fin metodos personalizados
-
-    /*
-    * @Query(value = "SELECT * FROM localidad ORDER BY nombre_localidad ASC", nativeQuery = true)
-    List<Localidad> traerTodoOrdenNombreAsc();
-
-    @Query(value = "SELECT * FROM localidad WHERE eliminado_localidad=1", nativeQuery = true)
-    List<Localidad> traerTodoEliminado();
-
-    @Query(value = "SELECT * FROM localidad WHERE eliminado_localidad=0", nativeQuery = true)
-    List<Localidad> traerTodoNoEliminado();*/
 
 }

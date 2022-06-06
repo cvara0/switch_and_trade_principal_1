@@ -24,7 +24,7 @@ public interface PropiedadRepositorio extends JpaRepository<Propiedad, Long> {
     List<Propiedad> traerTodoOrdenSuperficieDesc();
 
     @Query(value = "SELECT * FROM propiedad JOIN tipo_propiedad ON propiedad.id_tipo_propiedad_propiedad=tipo_propiedad.id_tipo_propiedad ORDER BY tipo_propiedad.nombre ASC", nativeQuery = true)
-    List<Propiedad> traerTodoOrdenTipoAsc();//segiir aca
+    List<Propiedad> traerTodoOrdenTipoAsc();
 
 
     @Query(value = "SELECT * FROM propiedad WHERE deseado_propiedad=1", nativeQuery = true)

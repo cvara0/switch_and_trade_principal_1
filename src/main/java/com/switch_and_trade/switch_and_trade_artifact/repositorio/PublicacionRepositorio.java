@@ -1,6 +1,7 @@
 package com.switch_and_trade.switch_and_trade_artifact.repositorio;
 
 import com.switch_and_trade.switch_and_trade_artifact.modelo.*;
+import org.hibernate.annotations.Loader;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,9 +13,9 @@ public interface PublicacionRepositorio  extends JpaRepository<Publicacion, Long
 
     List<Publicacion> traerTodoOrdenNombrePerfilAsc();
 
-    List<Publicacion> traerTodoOrdenNombreVehiculoAsc();
+    List<Publicacion> traerTodoOrdenTipoVehiculoAsc();
 
-
+    List<Publicacion> traerTodoOrdenTipoPropiedadAsc();
     /*
 
     @Column(name="id_publicacion")

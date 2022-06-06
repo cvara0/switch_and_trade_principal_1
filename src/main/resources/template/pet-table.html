@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+
+<main>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <div th:if="${success}" th:text="${success}" class="alert alert-success" role="alert"></div>
+
+                <div th:if="${pets.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
+                    You must enter pets.
+                    <a th:href="@{/pets/form}" class="alert-link">Create pet.</a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div th:unless="${pets.isEmpty()}" class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr class="table-dark">
+                            <th>Name</th>
+                            <th>Person</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="pet : ${pets}">
+                            <td th:text="${pet.name}"></td>
+                            <td th:text="|${pet.person.name} ${pet.person.surname}|"></td>
+                            <td><a class="btn btn-warning" th:href="@{/pets/form/__${pet.id}__}">Update</a></td>
+                            <td>
+                                <form th:action="@{/pets/delete/__${pet.id}__}" method="POST">
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

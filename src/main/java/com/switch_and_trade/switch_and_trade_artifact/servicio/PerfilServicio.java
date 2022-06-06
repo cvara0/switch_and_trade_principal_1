@@ -53,25 +53,25 @@ public class PerfilServicio {
     //fin metodos basicos
 
     // inicio metodos personalizados
+    public List<Perfil> traerTodoOrdenNombreAsc(){
+        return perfilRepositorio.traerTodoOrdenNombreAsc();
+    }
+    public List<Perfil> traerTodoOrdenApellidoAsc(){
+        return perfilRepositorio.traerTodoOrdenApellidoAsc();
+    }
 
+    public List<Perfil> traerTodoOrdenProvinciaAsc(){
+        return perfilRepositorio.traerTodoOrdenProvinciaAsc();
+    }
 
+    public List<Perfil> traerTodoOrdenLocalidadAsc(){
+        return perfilRepositorio.traerTodoOrdenLocalidadAsc();
+    }
+
+    public Perfil traerPorTelefono(Integer telefono){
+        return perfilRepositorio.traerPorTelefono(telefono);
+    }
 
 // fin metodos personalizados
 
-    /*
-    @Query(value = "SELECT * FROM perfil ORDER BY nombre_perfil ASC",nativeQuery = true)
-    List<Perfil> traerTodoOrdenNombreAsc();
-
-    @Query(value = "SELECT * FROM perfil ORDER BY apellido_perfil ASC",nativeQuery = true)
-    List<Perfil> traerTodoOrdenApellidoAsc();
-
-    @Query(value = "SELECT * FROM perfil JOIN provincia ON perfil.id_provincia_perfil=provincia.id_provincia ORDER BY provincia.nombre_provincia ASC",nativeQuery = true)
-    List<Perfil> traerTodoOrdenProvinciaAsc();
-
-    @Query(value = "SELECT * FROM perfil JOIN provincia ON perfil.id_provincia_perfil=provincia.id_provincia JOIN localidad ON provincia.id_provincia=localidad.id_provincia_localidad ORDER BY localidad.nombre_localidad ASC",nativeQuery = true)
-    List<Perfil> traerTodoOrdenLocalidadAsc();
-
-    @Query(value = "SELECT * FROM perfil WHERE telefono_perfil=?1",nativeQuery = true)
-    Perfil traerPorTelefono(Integer telefono);
-    * */
 }

@@ -60,6 +60,8 @@ public class PropiedadServicio {
         propiedadRepositorio.deleteById(id);
     }
 //fin metodos basicos
+
+// inicio metodos personalizados
     @Transactional(readOnly = true)
     public List<Propiedad> traerTodoOrdenProvinciaAsc() {
         return propiedadRepositorio.traerTodoOrdenProvinciaAsc();
@@ -78,7 +80,7 @@ public class PropiedadServicio {
     public List<Propiedad> traerTodoOrdenTipoAsc() {
         return propiedadRepositorio.traerTodoOrdenTipoAsc();
     }
-//todo lo que tenga strings no hace falta ordenar, con orden asc ya basta
+
     @Transactional(readOnly = true)
     public List<Propiedad> traerTodoOrdenEliminado(Boolean eliminado) {
         return eliminado ? propiedadRepositorio.traerTodoEliminado() : propiedadRepositorio.traerTodoNoEliminado();
@@ -128,5 +130,6 @@ public class PropiedadServicio {
     public List<Propiedad> traerTodoPorOfrecidoPorIdPerfil(Long idPerfil) {
         return propiedadRepositorio.traerTodoOfrecidoPorIdPerfil(idPerfil);
     }
+    // fin metodos personalizados
 
 }
