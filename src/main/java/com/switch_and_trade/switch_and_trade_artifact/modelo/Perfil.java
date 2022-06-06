@@ -1,9 +1,8 @@
-package com.switch_and_trade.switch_and_trade_artifact.entidad;
+package com.switch_and_trade.switch_and_trade_artifact.modelo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;

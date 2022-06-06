@@ -1,10 +1,8 @@
 package com.switch_and_trade.switch_and_trade_artifact.servicio;
 
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Propiedad;
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Vehiculo;
+import com.switch_and_trade.switch_and_trade_artifact.modelo.Vehiculo;
 import com.switch_and_trade.switch_and_trade_artifact.repositorio.VehiculoRepositorio;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VehiculoServicio {
     private final VehiculoRepositorio vehiculoRepositorio;
+//inicio metodos basicos
 
     @Transactional
     public void insertar(Vehiculo dto) {
@@ -58,6 +57,9 @@ public class VehiculoServicio {
     public void eliminarPorId(Long id) {
         vehiculoRepositorio.deleteById(id);
     }
+//fin metodos basicos
+
+    // inicio metodos personalizados
 
     @Transactional(readOnly = true)
     public List<Vehiculo> traerTodoOrdenAnio(Boolean ordenAsc) {
@@ -108,6 +110,6 @@ public class VehiculoServicio {
     public List<Vehiculo> traerTodoPorTipo(String tipo) {
         return vehiculoRepositorio.traerTodoPorTipo(tipo);
     }
-
+    // fin metodos personalizados
 
 }

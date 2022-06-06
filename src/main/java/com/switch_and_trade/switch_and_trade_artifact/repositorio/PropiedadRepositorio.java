@@ -1,14 +1,10 @@
 package com.switch_and_trade.switch_and_trade_artifact.repositorio;
 
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Perfil;
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Propiedad;
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Vehiculo;
+import com.switch_and_trade.switch_and_trade_artifact.modelo.Propiedad;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Column;
 import java.util.List;
 
 @Repository
@@ -18,14 +14,8 @@ public interface PropiedadRepositorio extends JpaRepository<Propiedad, Long> {
     @Query(value = "SELECT * FROM propiedad ORDER BY provincia_propiedad ASC", nativeQuery = true)
     List<Propiedad> traerTodoOrdenProvinciaAsc();
 
-    @Query(value = "SELECT * FROM propiedad ORDER BY provincia_propiedad DESC", nativeQuery = true)
-    List<Propiedad> traerTodoOrdenProvinciaDesc();
-
-    @Query(value = "SELECT * FROM propiedad JOIN propiedad ON propiedad.id_provincia_propiedad=provincia.id_provincia JOIN departamento ON provincia.id_provincia=departamento.id_provincia_departamento ORDER BY departamento.nombre_departamento ASC", nativeQuery = true)
-    List<Propiedad> traerTodoOrdenDepartamentoAsc();
-
-    @Query(value = "SELECT * FROM propiedad JOIN propiedad ON propiedad.id_provincia_propiedad=provincia.id_provincia JOIN departamento ON provincia.id_provincia=departamento.id_provincia_departamento ORDER BY departamento.nombre_departamento DESC", nativeQuery = true)
-    List<Propiedad> traerTodoOrdenDepartamentoDesc();
+    @Query(value = "SELECT * FROM propiedad JOIN propiedad ON propiedad.id_provincia_propiedad=provincia.id_provincia JOIN localidad ON provincia.id_provincia=localidad.id_provincia_localidad ORDER BY localidad.nombre_localidad ASC", nativeQuery = true)
+    List<Propiedad> traerTodoOrdenLocalidadAsc();
 
     @Query(value = "SELECT * FROM propiedad ORDER BY superficie_propiedad ASC", nativeQuery = true)
     List<Propiedad> traerTodoOrdenSuperficieAsc();
@@ -36,8 +26,6 @@ public interface PropiedadRepositorio extends JpaRepository<Propiedad, Long> {
     @Query(value = "SELECT * FROM propiedad JOIN tipo_propiedad ON propiedad.id_tipo_propiedad_propiedad=tipo_propiedad.id_tipo_propiedad ORDER BY tipo_propiedad.nombre ASC", nativeQuery = true)
     List<Propiedad> traerTodoOrdenTipoAsc();//segiir aca
 
-    @Query(value = "SELECT * FROM propiedad JOIN tipo_propiedad ON propiedad.id_tipo_propiedad_propiedad=tipo_propiedad.id_tipo_propiedad ORDER BY tipo_propiedad.nombre DESC", nativeQuery = true)
-    List<Propiedad> traerTodoOrdenTipoDesc();
 
     @Query(value = "SELECT * FROM propiedad WHERE deseado_propiedad=1", nativeQuery = true)
     List<Propiedad> traerTodoDeseado();
@@ -58,8 +46,8 @@ public interface PropiedadRepositorio extends JpaRepository<Propiedad, Long> {
     @Query(value = "SELECT * FROM propiedad JOIN provincia ON propiedad.id_provincia_propiedad=provincia.id_provincia WHERE provincia.nombre LIKE ?1", nativeQuery = true)
     List<Propiedad> traerTodoPorProvincia(String provincia);
 
-    @Query(value = "SELECT * FROM propiedad JOIN propiedad ON propiedad.id_provincia_propiedad=provincia.id_provincia JOIN departamento ON provincia.id_provincia=departamento.id_provincia_departamento WHERE departamento.nombre_departamento LIKE ?1", nativeQuery = true)
-    List<Propiedad> traerTodoPorDepartamento(String departamento);
+    @Query(value = "SELECT * FROM propiedad JOIN propiedad ON propiedad.id_provincia_propiedad=provincia.id_provincia JOIN localidad ON provincia.id_provincia=localidad.id_provincia_localidad WHERE localidad.nombre_localidad LIKE ?1", nativeQuery = true)
+    List<Propiedad> traerTodoPorLocalidad(String departamento);
 
     @Query(value = "SELECT * FROM propiedad WHERE superficie_propiedad BETWEEN ?1 AND ?2", nativeQuery = true)
     List<Propiedad> traerTodoPorRangoSuperficie(Integer superficieMin, Integer superficieMax);

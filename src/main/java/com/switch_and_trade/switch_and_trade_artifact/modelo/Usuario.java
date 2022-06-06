@@ -1,12 +1,9 @@
-package com.switch_and_trade.switch_and_trade_artifact.entidad;
+package com.switch_and_trade.switch_and_trade_artifact.modelo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import org.hibernate.annotations.SQLDelete;
-import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 
 import javax.persistence.*;
 

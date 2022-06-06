@@ -1,6 +1,6 @@
 package com.switch_and_trade.switch_and_trade_artifact.servicio;
 
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Perfil;
+import com.switch_and_trade.switch_and_trade_artifact.modelo.Perfil;
 import com.switch_and_trade.switch_and_trade_artifact.repositorio.PerfilRepositorio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,8 +13,9 @@ import java.util.List;
 public class PerfilServicio {
     private final PerfilRepositorio perfilRepositorio;
 
+    //inicio metodos basicos
     @Transactional
-    public void crear(Perfil dto) {
+    public void insertar(Perfil dto) {
         Perfil perfil = new Perfil();
         perfil.setNombre(dto.getNombre());
         perfil.setApellido(dto.getApellido());
@@ -25,7 +26,7 @@ public class PerfilServicio {
     }
 
     @Transactional
-    public void editar(Perfil dto) {
+    public void actualizar(Perfil dto) {
         Perfil perfil = perfilRepositorio.findById(dto.getId()).get();
         perfil.setNombre(dto.getNombre());
         perfil.setApellido(dto.getApellido());
@@ -45,33 +46,32 @@ public class PerfilServicio {
         return perfilRepositorio.findAll();
     }
 
-    @Transactional(readOnly = true)
-    public List<Perfil> traerTodoPorNombreOApellido(String nombre, String apellido) {
-        return null;//perfilRepositorio.findAllByNombreOrApellidoIgnoreCaseOrderByNombreAsc(nombre, apellido);
+    @Transactional
+    public void eliminarPorId(Long id) {
+        perfilRepositorio.deleteById(id);
     }
+    //fin metodos basicos
 
-    @Transactional(readOnly = true)
-    public List<Perfil> traerTodoPorNombreYApellido(String nombre, String apellido) {
-        return null;//perfilRepositorio.findAllByNombreAndApellidoIgnoreCaseOrderByNombreAsc(nombre, apellido);
-    }
+    // inicio metodos personalizados
 
-    @Transactional(readOnly = true)
-    public List<Perfil> traerTodoPorNombre(String nombre) {
-        return null;//perfilRepositorio.findAllByNombreIgnoreCaseOrderByNombreAsc(nombre);
-    }
 
-    @Transactional(readOnly = true)
-    public List<Perfil> traerTodoPorApellido(String apellido) {
-        return null;//perfilRepositorio.findAllByApellidoIgnoreCaseOrderByApellidoAsc(apellido);
-    }
 
-    @Transactional(readOnly = true)
-    public List<Perfil> traerTodoPorLocalidad(String localidad) {
-        return null;//perfilRepositorio.findAllByLocalidadOrderByLocalidadAsc(localidad);
-    }
+// fin metodos personalizados
 
-    @Transactional(readOnly = true)
-    public List<Perfil> traerTodoPorProvincia(String provincia) {
-        return null;//perfilRepositorio.findAllByProvinciaOrderByProvinciaAsc(provincia);
-    }
+    /*
+    @Query(value = "SELECT * FROM perfil ORDER BY nombre_perfil ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenNombreAsc();
+
+    @Query(value = "SELECT * FROM perfil ORDER BY apellido_perfil ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenApellidoAsc();
+
+    @Query(value = "SELECT * FROM perfil JOIN provincia ON perfil.id_provincia_perfil=provincia.id_provincia ORDER BY provincia.nombre_provincia ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenProvinciaAsc();
+
+    @Query(value = "SELECT * FROM perfil JOIN provincia ON perfil.id_provincia_perfil=provincia.id_provincia JOIN localidad ON provincia.id_provincia=localidad.id_provincia_localidad ORDER BY localidad.nombre_localidad ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenLocalidadAsc();
+
+    @Query(value = "SELECT * FROM perfil WHERE telefono_perfil=?1",nativeQuery = true)
+    Perfil traerPorTelefono(Integer telefono);
+    * */
 }

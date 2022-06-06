@@ -1,4 +1,4 @@
-package com.switch_and_trade.switch_and_trade_artifact.entidad;
+package com.switch_and_trade.switch_and_trade_artifact.modelo;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -6,9 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @RequiredArgsConstructor

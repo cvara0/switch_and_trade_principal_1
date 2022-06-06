@@ -1,7 +1,6 @@
 package com.switch_and_trade.switch_and_trade_artifact.servicio;
 
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Propiedad;
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Vehiculo;
+import com.switch_and_trade.switch_and_trade_artifact.modelo.Propiedad;
 import com.switch_and_trade.switch_and_trade_artifact.repositorio.PropiedadRepositorio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +15,7 @@ public class PropiedadServicio {
 
     private final PropiedadRepositorio propiedadRepositorio;
 
+    //inicio metodos basicos
     @Transactional
     public void crear(Propiedad dto) {
         Propiedad propiedad = new Propiedad();
@@ -59,15 +59,15 @@ public class PropiedadServicio {
     public void eliminarPorId(Long id) {
         propiedadRepositorio.deleteById(id);
     }
-
+//fin metodos basicos
     @Transactional(readOnly = true)
-    public List<Propiedad> traerTodoOrdenProvincia(Boolean ordenAsc) {
-        return ordenAsc ? propiedadRepositorio.traerTodoOrdenProvinciaAsc() : propiedadRepositorio.traerTodoOrdenProvinciaDesc();
+    public List<Propiedad> traerTodoOrdenProvinciaAsc() {
+        return propiedadRepositorio.traerTodoOrdenProvinciaAsc();
     }
 
     @Transactional(readOnly = true)
-    public List<Propiedad> traerTodoOrdenDepartamento(Boolean ordenAsc) {
-        return ordenAsc ? propiedadRepositorio.traerTodoOrdenDepartamentoAsc() : propiedadRepositorio.traerTodoOrdenDepartamentoDesc();
+    public List<Propiedad> traerTodoOrdenLocalidadAsc() {
+        return propiedadRepositorio.traerTodoOrdenLocalidadAsc();
     }
     @Transactional(readOnly = true)
     public List<Propiedad> traerTodoOrdenSuperficie(Boolean ordenAsc) {
@@ -75,10 +75,10 @@ public class PropiedadServicio {
     }
 
     @Transactional(readOnly = true)
-    public List<Propiedad> traerTodoOrdenTipo(Boolean ordenAsc) {
-        return ordenAsc ? propiedadRepositorio.traerTodoOrdenTipoAsc() : propiedadRepositorio.traerTodoOrdenTipoDesc();
+    public List<Propiedad> traerTodoOrdenTipoAsc() {
+        return propiedadRepositorio.traerTodoOrdenTipoAsc();
     }
-
+//todo lo que tenga strings no hace falta ordenar, con orden asc ya basta
     @Transactional(readOnly = true)
     public List<Propiedad> traerTodoOrdenEliminado(Boolean eliminado) {
         return eliminado ? propiedadRepositorio.traerTodoEliminado() : propiedadRepositorio.traerTodoNoEliminado();
@@ -95,8 +95,8 @@ public class PropiedadServicio {
     }
 
     @Transactional(readOnly = true)
-    public List<Propiedad> traerTodoPorDepartamento(String departamento) {
-        return propiedadRepositorio.traerTodoPorDepartamento(departamento);
+    public List<Propiedad> traerTodoPorLocalidad(String localidad) {
+        return propiedadRepositorio.traerTodoPorLocalidad(localidad);
     }
 
     @Transactional(readOnly = true)

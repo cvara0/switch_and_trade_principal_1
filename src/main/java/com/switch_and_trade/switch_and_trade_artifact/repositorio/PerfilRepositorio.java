@@ -1,24 +1,30 @@
 package com.switch_and_trade.switch_and_trade_artifact.repositorio;
 
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Perfil;
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Propiedad;
-import com.switch_and_trade.switch_and_trade_artifact.entidad.Vehiculo;
+import com.switch_and_trade.switch_and_trade_artifact.modelo.Perfil;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-
 import java.util.List;
-
-import static javax.persistence.FetchType.EAGER;
 
 @Repository
 public interface PerfilRepositorio extends JpaRepository<Perfil, Long> {
 
+
+    @Query(value = "SELECT * FROM perfil ORDER BY nombre_perfil ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenNombreAsc();
+
+    @Query(value = "SELECT * FROM perfil ORDER BY apellido_perfil ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenApellidoAsc();
+
+    @Query(value = "SELECT * FROM perfil JOIN provincia ON perfil.id_provincia_perfil=provincia.id_provincia ORDER BY provincia.nombre_provincia ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenProvinciaAsc();
+
+    @Query(value = "SELECT * FROM perfil JOIN provincia ON perfil.id_provincia_perfil=provincia.id_provincia JOIN localidad ON provincia.id_provincia=localidad.id_provincia_localidad ORDER BY localidad.nombre_localidad ASC",nativeQuery = true)
+    List<Perfil> traerTodoOrdenLocalidadAsc();
+
+    @Query(value = "SELECT * FROM perfil WHERE telefono_perfil=?1",nativeQuery = true)
+    Perfil traerPorTelefono(Integer telefono);
 
 
    /* @Modifying

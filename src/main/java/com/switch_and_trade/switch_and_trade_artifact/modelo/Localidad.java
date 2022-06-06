@@ -1,4 +1,4 @@
-package com.switch_and_trade.switch_and_trade_artifact.entidad;
+package com.switch_and_trade.switch_and_trade_artifact.modelo;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,21 +14,21 @@ import static javax.persistence.GenerationType.IDENTITY;
 @RequiredArgsConstructor
 @Setter
 @Getter
-@Table(name="departamento")
-@SQLDelete(sql = "UPDATE departamento SET eliminado_departamento = true WHERE id = ?")
-public class Departamento {
+@Table(name="localidad")
+@SQLDelete(sql = "UPDATE localidad SET eliminado_localidad = true WHERE id = ?")
+public class Localidad {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name="id_departamento")
+    @Column(name="id_localidad")
     private Long id;
 
-    @Column(name="nombre_departamento")
+    @Column(name="nombre_localidad")
     private String nombre;
 
-    @Column(name = "eliminado_departamento", nullable = false)
+    @Column(name = "eliminado_localidad", nullable = false)
     private Boolean eliminado;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name="id_provincia_departamento", referencedColumnName = "id_provincia")
+    @JoinColumn(name="id_provincia_localidad", referencedColumnName = "id_provincia")
     private Provincia provincia;
 }
