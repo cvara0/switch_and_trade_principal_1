@@ -27,8 +27,8 @@ public class VehiculoControl {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @GetMapping("/anio-asc")
     public ModelAndView traerTodoPorAnioAsc(){
-        ModelAndView mav=new ModelAndView("tabla-vehiculo");
-        mav.addObject("vehiculo",vehiculoServicio.traerTodoOrdenAnio(true);
+        ModelAndView mav=new ModelAndView("");
+        mav.addObject("TodoVehiculoPorAnioAsc",vehiculoServicio.traerTodoOrdenAnio(true));
         return mav;
     }
 /*

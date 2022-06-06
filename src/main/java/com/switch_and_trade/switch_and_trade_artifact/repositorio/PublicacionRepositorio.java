@@ -10,13 +10,13 @@ import java.util.List;
 @Repository
 public interface PublicacionRepositorio  extends JpaRepository<Publicacion, Long> {
 
-
+/*
     List<Publicacion> traerTodoOrdenNombrePerfilAsc();
 
     List<Publicacion> traerTodoOrdenTipoVehiculoAsc();
 
     List<Publicacion> traerTodoOrdenTipoPropiedadAsc();
-    /*
+
 
     @Column(name="id_publicacion")
 
