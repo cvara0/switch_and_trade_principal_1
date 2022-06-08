@@ -1,6 +1,6 @@
 package com.switch_and_trade.switch_and_trade_artifact.seguridad;
 
-import com.switch_and_trade.switch_and_trade_artifact.servicio.UsuarioServicio;
+import com.switch_and_trade.switch_and_trade_artifact.servicios.UsuarioServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
