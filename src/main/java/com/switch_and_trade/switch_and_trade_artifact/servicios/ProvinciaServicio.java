@@ -18,6 +18,7 @@ public class ProvinciaServicio {
     private final ProvinciaRepositorio provinciaRepositorio;
 
     //inicio metodos basicos
+    @Transactional
     public void insertar(Provincia dto){
         Provincia provincia=new Provincia();
         provincia.setNombre(dto.getNombre());
@@ -25,16 +26,19 @@ public class ProvinciaServicio {
 
         provinciaRepositorio.save(provincia);
     }
-    public void actualizar (Localidad dto){
+    @Transactional
+    public void actualizar (Provincia dto){
         Provincia provincia=provinciaRepositorio.findById(dto.getId()).get();
         provincia.setNombre(dto.getNombre());
         provincia.setEliminado(dto.getEliminado());
         provinciaRepositorio.save(provincia);
     }
+    @Transactional
     public List<Provincia> traerTodo(){
         return provinciaRepositorio.findAll();
     }
 
+    @Transactional
     public Provincia traerPorId(Long id){
         return provinciaRepositorio.findById(id).get();
     }
@@ -46,18 +50,25 @@ public class ProvinciaServicio {
 //fin metodos basicos
 
     // inicio metodos personalizados
+    @Transactional
     public List<Provincia> traerTodoOrdenNombreAsc(){
         return provinciaRepositorio.traerTodoOrdenNombreAsc();
     }
+    @Transactional
     List<Provincia> traerTodoEliminado(){
         return provinciaRepositorio.traerTodoEliminado();
     }
-
+    @Transactional
     List<Provincia> traerTodoNoEliminado(){
         return provinciaRepositorio.traerTodoNoEliminado();
     }
 
+    @Transactional
+    public void restablecerPorId(Long id) {
+       provinciaRepositorio.restablecerPorId(id);
+    }
+//seguir con provincia y localidad
 // fin metodos personalizados
 
 }
-}
+

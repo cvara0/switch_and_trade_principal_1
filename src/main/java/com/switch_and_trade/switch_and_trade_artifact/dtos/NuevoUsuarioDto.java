@@ -1,7 +1,9 @@
 package com.switch_and_trade.switch_and_trade_artifact.dtos;
 
+import com.switch_and_trade.switch_and_trade_artifact.entidades.Localidad;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Provincia;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Rol;
+import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +24,9 @@ public class NuevoUsuarioDto {
 
     private String foto;
 
-    private Provincia provincia;
+    private String nombreProvincia;
 
+    private String nombreLocalidad;
     //usuario
     private String email;
 

@@ -21,7 +21,7 @@ import java.util.List;
 public class PerfilControlador {
 
     private final PerfilServicio perfilServicio;
-
+//inicio metodos basicos
     @GetMapping("/traer-todo")
     public ModelAndView traerTodo() {
         ModelAndView mav = new ModelAndView("html que muestra todos los perfiles");
@@ -65,6 +65,13 @@ public class PerfilControlador {
 
         return redirect;
     }
+    //fin metodos basicos
+    // inicio metodos personalizados
+
+    //seleccionar provincia: para setear en el dto
+    //seleccionar localidad: para setear enm el dto
+
+    //fin metodos personalizados
 
     /*@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/enable/{id}")

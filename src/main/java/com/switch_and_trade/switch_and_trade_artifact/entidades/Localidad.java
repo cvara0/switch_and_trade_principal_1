@@ -15,7 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 @Getter
 @Table(name="localidad")
-@SQLDelete(sql = "UPDATE localidad SET eliminado_localidad = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE localidad JOIN provincia ON localidad.id_provincia_localidad=provincia.id_provincia SET eliminado_localidad = true WHERE id = ? OR provincia.eliminado_provincia=true")//probar
 public class Localidad {
     @Id
     @GeneratedValue(strategy = IDENTITY)

@@ -2,8 +2,6 @@ package com.switch_and_trade.switch_and_trade_artifact.controladores;
 
 import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuario;
 import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuarioDto;
-import com.switch_and_trade.switch_and_trade_artifact.entidades.Perfil;
-import com.switch_and_trade.switch_and_trade_artifact.entidades.Provincia;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Rol;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Usuario;
 import com.switch_and_trade.switch_and_trade_artifact.servicios.UsuarioServicio;
@@ -34,7 +32,7 @@ public class UsuarioControlador {
 
         if (error != null) mav.addObject("error", "email o passwords invalidos");
         if (logout != null) mav.addObject("logout", "Se ha deslogueado exitosamente");
-        if (principal != null) mav.setViewName("redirect:/");
+        if (principal != null) mav.setViewName("redirect:/index");
 
         return mav;
     }
@@ -43,7 +41,7 @@ public class UsuarioControlador {
         ModelAndView mav = new ModelAndView("sign-up-form");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
-        if (principal != null) mav.setViewName("redirect:/");
+        if (principal != null) mav.setViewName("redirect:/index");
 
         if (inputFlashMap != null) {
             mav.addObject("exception", inputFlashMap.get("exception"));
@@ -57,13 +55,11 @@ public class UsuarioControlador {
         return mav;
     }
     @PostMapping("/register")
-    public RedirectView signup(NuevoUsuarioDto dto, HttpServletRequest request, RedirectAttributes attributes) {
-        RedirectView redirect = new RedirectView("/");
-        Usuario nuevoUsuario=new Usuario();
-        Perfil nuevoPerfil=new Perfil();
+    public RedirectView signup(Usuario dto, HttpServletRequest request, RedirectAttributes attributes) {
+        RedirectView redirect = new RedirectView("/index");
 
         try {
-            usuarioServicio.insertar(NuevoUsuarioDto );//ya incluye los datos del perfil
+            usuarioServicio.insertar(dto);//ya incluye los datos del perfil
             request.login(dto.getEmail(), dto.getClave());
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("usuario", dto);
