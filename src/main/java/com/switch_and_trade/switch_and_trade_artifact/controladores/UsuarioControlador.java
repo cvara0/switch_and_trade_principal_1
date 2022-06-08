@@ -1,6 +1,9 @@
 package com.switch_and_trade.switch_and_trade_artifact.controladores;
 
 import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuario;
+import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuarioDto;
+import com.switch_and_trade.switch_and_trade_artifact.entidades.Perfil;
+import com.switch_and_trade.switch_and_trade_artifact.entidades.Provincia;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Rol;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Usuario;
 import com.switch_and_trade.switch_and_trade_artifact.servicios.UsuarioServicio;
@@ -54,8 +57,10 @@ public class UsuarioControlador {
         return mav;
     }
     @PostMapping("/register")
-    public RedirectView signup(NuevoUsuario dto, HttpServletRequest request, RedirectAttributes attributes) {
+    public RedirectView signup(NuevoUsuarioDto dto, HttpServletRequest request, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/");
+        Usuario nuevoUsuario=new Usuario();
+        Perfil nuevoPerfil=new Perfil();
 
         try {
             usuarioServicio.insertar(dto);//ya incluye los datos del perfil
