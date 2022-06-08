@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/principal")
-public class PrincipalControlador {
+public class IndexControlador {
     @GetMapping
     public ModelAndView traerIndex() {
         return new ModelAndView("index.html");

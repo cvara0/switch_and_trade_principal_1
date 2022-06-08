@@ -55,6 +55,10 @@ public class LocalidadServicio {
         return localidadRepositorio.traerTodoNoEliminado();
     }
 
+    List<Localidad> traerTodoPorNombreProvincia(String nombreProvincia){
+        return localidadRepositorio.traerTodoPorNombreProvincia(nombreProvincia);
+    }
+
 // fin metodos personalizados
 
 }

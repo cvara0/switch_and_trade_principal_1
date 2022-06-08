@@ -6,6 +6,7 @@ import com.switch_and_trade.switch_and_trade_artifact.entidades.Perfil;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Provincia;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Rol;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.Usuario;
+import com.switch_and_trade.switch_and_trade_artifact.servicios.ProvinciaServicio;
 import com.switch_and_trade.switch_and_trade_artifact.servicios.UsuarioServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,23 +25,23 @@ import java.security.Principal;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/usuarios")
 @RequiredArgsConstructor
-public class UsuarioControlador {
+public class UsuarioControlador2 {
     private final UsuarioServicio usuarioServicio;
-    @GetMapping("/login")
-    public ModelAndView login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, Principal principal) {
-        ModelAndView mav = new ModelAndView("login-form");
+    private final ProvinciaServicio provinciaServicio;
 
-        if (error != null) mav.addObject("error", "email o passwords invalidos");
-        if (logout != null) mav.addObject("logout", "Se ha deslogueado exitosamente");
-        if (principal != null) mav.setViewName("redirect:/");
-
+    @GetMapping("/formulario-registrarse")
+    public ModelAndView formularioRegistrarse(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, Principal principal) {
+        ModelAndView mav = new ModelAndView("formulario-registrarse");
+        mav.addObject("objeto_perfil_vacio",new Perfil());
+        mav.addObject("objeto_usuario_vacio",new Usuario());
+        
         return mav;
     }
-    @GetMapping("/sign-up")
-    public ModelAndView signup(HttpServletRequest request, Principal principal) {
-        ModelAndView mav = new ModelAndView("sign-up-form");
+    @GetMapping("/formulario-iniciar-sesion")
+    public ModelAndView formularioIniciarSesion(HttpServletRequest request, Principal principal) {
+        ModelAndView mav = new ModelAndView("formulario-iniciar-sesion");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (principal != null) mav.setViewName("redirect:/");
@@ -56,14 +57,14 @@ public class UsuarioControlador {
 
         return mav;
     }
-    @PostMapping("/register")
+    @PostMapping("/post-registrarse")
     public RedirectView signup(NuevoUsuarioDto dto, HttpServletRequest request, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/");
         Usuario nuevoUsuario=new Usuario();
         Perfil nuevoPerfil=new Perfil();
 
         try {
-            usuarioServicio.insertar(NuevoUsuarioDto );//ya incluye los datos del perfil
+            usuarioServicio.insertar(dto);//ya incluye los datos del perfil
             request.login(dto.getEmail(), dto.getClave());
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("usuario", dto);

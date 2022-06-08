@@ -32,14 +32,14 @@ public class PerfilControlador {
     @GetMapping("/formulario")
     public ModelAndView traerFormularioInsertar() {
         ModelAndView mav = new ModelAndView("html que muestra formulario para insertar perfil nuevo y llama a /insertar");
-        mav.addObject("objeto_perfil-vacio", new Perfil());
+        mav.addObject("objetoPerfilVacio", new Perfil());
         return mav;
     }
 
     @GetMapping("/formulario/{id}")
     public ModelAndView traerFormularioActualizar(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("html que muestra formulario para actualizar perfil  y llama a /actualizar");
-        mav.addObject("perfil-a-actualizar", perfilServicio.traerPorId(id));
+        mav.addObject("perfilParaActualizar", perfilServicio.traerPorId(id));
         return mav;
     }
 

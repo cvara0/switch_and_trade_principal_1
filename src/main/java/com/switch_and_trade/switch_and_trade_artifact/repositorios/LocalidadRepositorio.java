@@ -17,4 +17,7 @@ public interface LocalidadRepositorio extends JpaRepository<Localidad, Long> {
 
     @Query(value = "SELECT * FROM localidad WHERE eliminado_localidad=0", nativeQuery = true)
     List<Localidad> traerTodoNoEliminado();
+
+    @Query(value = "SELECT * FROM localidad JOIN provincia ON localidad.id_provincia_localidad=provincia.id_provincia WHERE provincia.nombre_provincia LIKE ?1 GROUP BY provincia.nombre_provincia", nativeQuery = true)
+    List<Localidad> traerTodoPorNombreProvincia(String nombreProvincia);
 }
