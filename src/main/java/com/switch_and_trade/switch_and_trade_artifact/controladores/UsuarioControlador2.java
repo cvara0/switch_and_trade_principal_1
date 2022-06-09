@@ -3,6 +3,8 @@ package com.switch_and_trade.switch_and_trade_artifact.controladores;
 import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuario;
 import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuarioDto;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.*;
+import com.switch_and_trade.switch_and_trade_artifact.servicios.LocalidadServicio;
+import com.switch_and_trade.switch_and_trade_artifact.servicios.PerfilServicio;
 import com.switch_and_trade.switch_and_trade_artifact.servicios.ProvinciaServicio;
 import com.switch_and_trade.switch_and_trade_artifact.servicios.UsuarioServicio;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +28,15 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UsuarioControlador2 {
     private final UsuarioServicio usuarioServicio;
+    private final PerfilServicio perfilServicio;
     private final ProvinciaServicio provinciaServicio;
-    private final NuevoUsuarioDto nuevoUsuarioDto;
+    private final LocalidadServicio localidadServicio;
     @GetMapping("/formulario-registrarse")
     public ModelAndView formularioRegistrarse(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, Principal principal) {
         ModelAndView mav = new ModelAndView("formulario-registrarse");
-        mav.addObject("objeto_perfil_vacio",new Perfil());
-        mav.addObject("objeto_usuario_vacio",new Usuario());
+        //mav.addObject("todoProvincia",provinciaServicio.traerTodo());
+        //mav.addObject("todoLocalidad",localidadServicio.traerTodo());
+        mav.addObject("objetoNuevoUsuarioDtoVacio",new NuevoUsuarioDto());
 
         return mav;
     }
@@ -69,12 +73,21 @@ public class UsuarioControlador2 {
         localidadSeleccionada.setEliminado(false);
         localidadSeleccionada.setProvincia(provinciaSeleccionada);
 
-        nuevoPerfil.setNombre(this.nuevoUsuarioDto.getNombre());
-        nuevoPerfil.setApellido(this.nuevoUsuarioDto.getApellido());
-        nuevoPerfil.se
+        nuevoPerfil.setNombre(dto.getNombre());
+        nuevoPerfil.setApellido(dto.getApellido());
+        nuevoPerfil.setLocalidad(localidadSeleccionada);
+        nuevoPerfil.setTelefono(dto.getTelefono());
+        //perfil no tiene eliminado, ver eso
+        perfilServicio.insertar(nuevoPerfil);
+
+        nuevoUsuario.setEmail(dto.getEmail());
+        nuevoUsuario.setClave(dto.getClave());
+        //nuevoUsuario.setRol();
+        nuevoUsuario.setEliminado(false);
+        nuevoUsuario.setPerfil(nuevoPerfil);//que pasa con la clave primaria del nuevo perfil
 
         try {
-            usuarioServicio.insertar(dto);//ya incluye los datos del perfil
+            usuarioServicio.insertar(nuevoUsuario);//ya incluye los datos del perfil
             request.login(dto.getEmail(), dto.getClave());
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("usuario", dto);

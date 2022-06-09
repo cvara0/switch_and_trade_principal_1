@@ -27,17 +27,17 @@ public class Publicacion {
     @Column(name = "eliminado_publicacion", nullable = false)
     private Boolean eliminado;
 
-    @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "id_perfil_publicacion", referencedColumnName = "id_perfil", nullable = false)
-    private Perfil perfil;
-
-    @ManyToOne(fetch = EAGER)
+    @ManyToOne(fetch = EAGER)//no se puede tener el mismo vechiculo en 2 publicaciones
     @JoinColumn(name = "id_vehiculo_publicacion", referencedColumnName = "id_vehiculo", nullable = true)
     private Vehiculo vehiculo;
 
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "id_propiedad_publicacion", referencedColumnName = "id_propiedad", nullable = true)
     private Propiedad propiedad;
+
+    @ManyToOne(fetch = EAGER)
+    @JoinColumn(name="id_tipoDeseado_publicacion", referencedColumnName = "id_tipoDeseado")
+    private TipoDeseado tipoDeseado;
 
     //fecha
 }

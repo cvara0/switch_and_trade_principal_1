@@ -34,7 +34,13 @@ public class UsuarioServicio implements UserDetailsService {
             throw new IllegalArgumentException("ya hay un usuario asociado al email ingresado!");
         }
         Usuario usuario = new Usuario();
+        usuario.setNombre(dto.getNombre());
+        usuario.setApellido(dto.getApellido());
+        usuario.setTelefono(dto.getTelefono());
+        usuario.setFoto(dto.getFoto());
+        usuario.setLocalidad(dto.getLocalidad());
         usuario.setEmail(dto.getEmail());
+        usuario.setRol(dto.getRol());
         usuario.setClave(encoder.encode(dto.getClave()));
 
 
@@ -46,22 +52,26 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void actualizarUsuario(Usuario dto) {
+    public void actualizar(Usuario dto) {
         Usuario usuario = new Usuario();
         usuario.setEmail(dto.getEmail());
         usuario.setClave(dto.getClave());
-        usuario.setRol(dto.getRol());
+        usuario.setNombre(dto.getNombre());
+        usuario.setApellido(dto.getApellido());
+        usuario.setTelefono(dto.getTelefono());
+        usuario.setFoto(dto.getFoto());
+        usuario.setLocalidad(dto.getLocalidad());
 
         usuarioRepositorio.save(usuario);
     }
 
     @Transactional(readOnly = true)
-    public Usuario getById(Long id) {
+    public Usuario traerPorId(Long id) {
         return usuarioRepositorio.findById(id).get();
     }
 
     @Transactional(readOnly = true)
-    public List<Usuario> getAll() {
+    public List<Usuario> traerTodo() {
         return usuarioRepositorio.findAll();
     }
 
@@ -88,5 +98,30 @@ public class UsuarioServicio implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(usuario.getEmail(), usuario.getClave(), singletonList(authority));
     }
+
+    //fin metodos basicos
+
+    // inicio metodos personalizados
+    public List<Usuario> traerTodoOrdenNombreAsc(){
+        return usuarioRepositorio.traerTodoOrdenNombreAsc();
+    }
+    public List<Usuario> traerTodoOrdenApellidoAsc(){
+        return usuarioRepositorio.traerTodoOrdenApellidoAsc();
+    }
+
+    public List<Usuario> traerTodoOrdenProvinciaAsc(){
+        return usuarioRepositorio.traerTodoOrdenProvinciaAsc();
+    }
+
+    public List<Usuario> traerTodoOrdenLocalidadAsc(){
+        return usuarioRepositorio.traerTodoOrdenLocalidadAsc();
+    }
+
+    public Usuario traerPorTelefono(Integer telefono){
+        return usuarioRepositorio.traerPorTelefono(telefono);
+    }
+
+// fin metodos personalizados
+
     //fin metodos personalizados
 }

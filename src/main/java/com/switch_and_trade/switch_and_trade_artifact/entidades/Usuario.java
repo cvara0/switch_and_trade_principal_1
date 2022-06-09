@@ -30,15 +30,26 @@ public class Usuario {
     @Column(name = "clave_usuario", nullable = false)
     private String clave;
 
-    @Enumerated(STRING)
-    @Column(name = "rol_usuario", nullable = false)
-    private Rol rol;
+    @Column(name = "nombre_usuario",length = 50,nullable = false)
+    private String nombre;
 
-    @OneToOne(fetch = EAGER)
-    @JoinColumn(name = "id_perfil_usuario", referencedColumnName = "id_perfil")
-    private Perfil perfil;
+    @Column(name = "apellido_usuario",length = 50,nullable = false)
+    private String apellido;
+
+    @Column(name = "telefono_usuario",nullable = false)
+    private Long telefono;
+
+    @Column(name="foto_usuario")
+    private String foto;
+
+    @ManyToOne(fetch = EAGER)
+    @JoinColumn(name="id_localidad_usuario", referencedColumnName = "id_localidad")
+    private Localidad localidad;
 
     @Column(name = "eliminado_usuario", nullable = false)
     private Boolean eliminado;
 
+    @Enumerated(STRING)
+    @Column(name = "rol_usuario", nullable = false)
+    private Rol rol;
 }

@@ -23,9 +23,9 @@ public class NuevoUsuarioDto {
     private Long telefono;
 
     private String foto;
-
+    //provincia
     private String nombreProvincia;
-
+    //localidad
     private String nombreLocalidad;
     //usuario
     private String email;

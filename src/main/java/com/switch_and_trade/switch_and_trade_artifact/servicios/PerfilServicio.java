@@ -17,10 +17,7 @@ public class PerfilServicio {
     @Transactional
     public void insertar(Perfil dto) {
         Perfil perfil = new Perfil();
-        perfil.setNombre(dto.getNombre());
-        perfil.setApellido(dto.getApellido());
-        perfil.setTelefono(dto.getTelefono());
-        perfil.setProvincia(dto.getProvincia());
+
         //perfil.setLocalidad(dto.getLocalidad());
         /*
         * perfil.setUsuario(dto.getUsuario());
@@ -34,7 +31,7 @@ public class PerfilServicio {
         perfil.setNombre(dto.getNombre());
         perfil.setApellido(dto.getApellido());
         perfil.setTelefono(dto.getTelefono());
-        perfil.setProvincia(dto.getProvincia());
+        perfil.setLocalidad(dto.getLocalidad());
         //perfil.setLocalidad(dto.getLocalidad());
         /*
         *
@@ -56,28 +53,6 @@ public class PerfilServicio {
     public void eliminarPorId(Long id) {
         perfilRepositorio.deleteById(id);
     }
-    //fin metodos basicos
 
-    // inicio metodos personalizados
-    public List<Perfil> traerTodoOrdenNombreAsc(){
-        return perfilRepositorio.traerTodoOrdenNombreAsc();
-    }
-    public List<Perfil> traerTodoOrdenApellidoAsc(){
-        return perfilRepositorio.traerTodoOrdenApellidoAsc();
-    }
-
-    public List<Perfil> traerTodoOrdenProvinciaAsc(){
-        return perfilRepositorio.traerTodoOrdenProvinciaAsc();
-    }
-
-    public List<Perfil> traerTodoOrdenLocalidadAsc(){
-        return perfilRepositorio.traerTodoOrdenLocalidadAsc();
-    }
-
-    public Perfil traerPorTelefono(Integer telefono){
-        return perfilRepositorio.traerPorTelefono(telefono);
-    }
-
-// fin metodos personalizados
 
 }
