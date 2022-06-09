@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
-public class AppConfiguracion {
+public class EncriptadorConfiguracion {
     @Bean
-    public BCryptPasswordEncoder encoder(){
+    public BCryptPasswordEncoder encriptar(){
         return new BCryptPasswordEncoder();
-    }
+    }//este metodo encripta las claves, este es el mas usado
 }

@@ -15,41 +15,41 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 @Getter
 @NoArgsConstructor
-@Table(name = "usuario", indexes = {@Index(name = "idx_email_usuario", columnList = "email_usuario")})
-@SQLDelete(sql = "UPDATE usuario SET eliminado_usuario = true WHERE id = ?")
-public class Usuario {
+@Table(name = "perfil", indexes = {@Index(name = "idx_email_perfil", columnList = "email_perfil")})
+@SQLDelete(sql = "UPDATE perfil SET eliminado_perfil = true WHERE id = ?")
+public class Perfil {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id_usuario")
+    @Column(name = "id_perfil")
     private Long id;
 
-    @Column(name = "email_usuario", length = 60, unique = true, nullable = false)
+    @Column(name = "email_perfil", length = 60, unique = true, nullable = false)
     private String email;
 
-    @Column(name = "clave_usuario", nullable = false)
+    @Column(name = "clave_perfil", nullable = false)
     private String clave;
 
-    @Column(name = "nombre_usuario",length = 50,nullable = false)
+    @Column(name = "nombre_perfil",length = 50,nullable = false)
     private String nombre;
 
-    @Column(name = "apellido_usuario",length = 50,nullable = false)
+    @Column(name = "apellido_perfil",length = 50,nullable = false)
     private String apellido;
 
-    @Column(name = "telefono_usuario",nullable = false)
+    @Column(name = "telefono_perfil",nullable = false)
     private Long telefono;
 
-    @Column(name="foto_usuario")
+    @Column(name="foto_perfil")
     private String foto;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name="id_localidad_usuario", referencedColumnName = "id_localidad")
+    @JoinColumn(name="id_localidad_perfil", referencedColumnName = "id_localidad")
     private Localidad localidad;
 
-    @Column(name = "eliminado_usuario", nullable = false)
+    @Column(name = "eliminado_perfil", nullable = false)
     private Boolean eliminado;
 
     @Enumerated(STRING)
-    @Column(name = "rol_usuario", nullable = false)
+    @Column(name = "rol_perfil", nullable = false)
     private Rol rol;
 }
