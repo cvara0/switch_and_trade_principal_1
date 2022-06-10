@@ -27,10 +27,12 @@ public interface PublicacionRepositorio extends JpaRepository<Publicacion, Long>
             "ON " +
                 "tipo_deseado.id_tipo_vehiculo_tipo_deseado=tipo_vehiculo.id_tipo_vehiculo " +
             "WHERE " +
-            "",nativeQuery = true)
+                "tipo_vehiculo.nombre_tipo_vehiculo " +
+            "IN " +
+                "(SELECT todos los tipos de vehiculo en la bd que tengan deseado false) or tipo_propiedadnombre tipopropiedad IN lo mismo",nativeQuery = true)
     List<Publicacion> traerPublicacionesQueOfrecenAlgunoDeMisDeseos(Publicacion miPublicacion);
     /*de la publicacion extraigo los tipos deseados, los cuales estan vinculados a los tipos deseados de vehiculo
-    y propiedad, ahora debo comparar dichos tipos deseados con los demas en la bd, que a su vez sus propiedades
+    y propiedad, ahora debo comparar dichos tipos deseados con los demas en la bd y que a su vez sus propiedades
     y vehiculos correspondientes tengan deseo en false. y el id de la publicacion sera pasado como parametro
     *
     *
