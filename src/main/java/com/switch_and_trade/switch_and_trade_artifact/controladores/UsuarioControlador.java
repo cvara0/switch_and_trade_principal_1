@@ -58,7 +58,7 @@ public class UsuarioControlador {
 
         return mav;
     }
-    @PostMapping("/post-registrarse")
+    @PostMapping("/registrarse")
     public RedirectView signup(NuevoUsuarioDto dto, HttpServletRequest request, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/");
         Localidad localidadSeleccionada=new Localidad();

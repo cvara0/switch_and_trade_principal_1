@@ -38,7 +38,7 @@ public class AutenticacionControlador {
 
     @GetMapping("/formulario-registar")
     public ModelAndView formularioRegistrar(HttpServletRequest request, Principal principal) {
-        ModelAndView mav = new ModelAndView("sign-up-form");
+        ModelAndView mav = new ModelAndView("formulario registrar.html");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (principal != null) mav.setViewName("redirect:/");

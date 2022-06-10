@@ -28,6 +28,8 @@ public class PerfilServicio implements UserDetailsService {
     private final EmailServicio emailServicio;
 
     // inicio metodos basicos
+
+
     @Transactional
     public void insertar(Perfil dto) {
         if (perfilRepositorio.existsByEmail(dto.getEmail())) {
@@ -43,9 +45,8 @@ public class PerfilServicio implements UserDetailsService {
         //usuario.setRol(dto.getRol());
         perfil.setClave(encriptador.encode(dto.getClave()));//se encripta la constrasenia
 
-
         if (perfilRepositorio.findAll().isEmpty()) perfil.setRol(Rol.ADMINISTRADOR);
-        else perfil.setRol(dto.getRol());
+        else perfil.setRol(Rol.USUARIO);
 
         emailServicio.send(dto.getEmail());
         perfilRepositorio.save(perfil);
@@ -87,7 +88,8 @@ public class PerfilServicio implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {//sprint security envia el parametro mail automaticamente
         Perfil perfil = perfilRepositorio.findByEmail(email)//orElseThrow es un metodo de la clase optional que permite usar una expresion lambda
                 .orElseThrow(() -> new UsernameNotFoundException("There is no user associated with the email entered"));//una lamabda es (parametro)->(return)
-        GrantedAuthority authority = () -> "ROLE_" + perfil.getRol().name();
+
+        GrantedAuthority authority = () -> "ROLE_" + perfil.getRol().name();//funcion que implementa los roles
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attributes.getRequest().getSession(true);

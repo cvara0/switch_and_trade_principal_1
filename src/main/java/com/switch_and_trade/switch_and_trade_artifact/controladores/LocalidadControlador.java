@@ -51,7 +51,7 @@ public class LocalidadControlador {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/insertar")
+    @PostMapping("/insertar")//accion insertar
     public RedirectView insertar(Localidad dto) {
         RedirectView redirect = new RedirectView("/localidades/tabla");
         try {
