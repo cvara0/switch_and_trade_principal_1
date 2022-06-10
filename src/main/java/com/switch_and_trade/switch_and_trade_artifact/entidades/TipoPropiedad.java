@@ -21,8 +21,8 @@ public class TipoPropiedad {
     @Column(name="id_tipo_propiedad")
     private Long id;
 
-    @Column(name="tipo_tipo_propiedad")
-    private String tipo;
+    @Column(name="nombre_tipo_propiedad")
+    private String nombre;
 
     @Column(name = "eliminado_tipo_propiedad", nullable = false)
     private Boolean eliminado;

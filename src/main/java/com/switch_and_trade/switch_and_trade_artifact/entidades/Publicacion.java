@@ -36,7 +36,7 @@ public class Publicacion {
     private Propiedad propiedad;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name="id_tipoDeseado_publicacion", referencedColumnName = "id_tipoDeseado")
+    @JoinColumn(name="id_tipo_deseado_publicacion", referencedColumnName = "id_tipo_deseado")
     private TipoDeseado tipoDeseado;
 
     //fecha

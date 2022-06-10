@@ -15,7 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "vehiculo", indexes = {@Index(name = "idx_id_tipo_vechiculo_vehiculo", columnList = "id_tipo_vechiculo_vehiculo")})
+@Table(name = "vehiculo", indexes = {@Index(name = "idx_id_tipo_vehiculo_vehiculo", columnList = "id_tipo_vehiculo_vehiculo")})
 @SQLDelete(sql = "UPDATE vehiculo SET eliminado_vehiculo = true WHERE id = ?")
 public class Vehiculo {
     @Id
@@ -36,7 +36,7 @@ public class Vehiculo {
     private String descripcion;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name="id_tipo_vechiculo_vehiculo", referencedColumnName = "id_tipo_vechiculo")
+    @JoinColumn(name="id_tipo_vehiculo_vehiculo", referencedColumnName = "id_tipo_vehiculo")
     private TipoVehiculo tipoVehiculo;//preguntarse que es lo que se comparte entre entidades
 
     @Column(name="foto_vehiculo")

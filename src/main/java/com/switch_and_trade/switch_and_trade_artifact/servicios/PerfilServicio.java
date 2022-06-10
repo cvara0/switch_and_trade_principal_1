@@ -88,9 +88,9 @@ public class PerfilServicio implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {//sprint security envia el parametro mail automaticamente
         Perfil perfil = perfilRepositorio.findByEmail(email)//orElseThrow es un metodo de la clase optional que permite usar una expresion lambda
                 .orElseThrow(() -> new UsernameNotFoundException("There is no user associated with the email entered"));//una lamabda es (parametro)->(return)
-
+        //dudas con esto
         GrantedAuthority authority = () -> "ROLE_" + perfil.getRol().name();//funcion que implementa los roles
-
+        //dudas con esto
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attributes.getRequest().getSession(true);
 

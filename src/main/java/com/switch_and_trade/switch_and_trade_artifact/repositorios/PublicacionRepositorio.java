@@ -10,6 +10,41 @@ import java.util.List;
 @Repository
 public interface PublicacionRepositorio extends JpaRepository<Publicacion, Long> {
 
+
+    @Query(value = "SELECT * " +
+            "FROM " +
+                "publicacion " +
+            "JOIN " +
+                "tipo_deseado " +
+            "ON " +
+                "publicacion.id_tipo_deseado_publicacion=tipo_deseado.id_tipo_deseado " +
+            "JOIN " +
+                "tipo_propiedad " +
+            "ON " +
+                "tipo_deseado.id_tipo_propiedad_tipo_deseado=tipo_propiedad.id_tipo_propiedad " +
+            "JOIN " +
+                "tipo_vehiculo " +
+            "ON " +
+                "tipo_deseado.id_tipo_vehiculo_tipo_deseado=tipo_vehiculo.id_tipo_vehiculo " +
+            "WHERE " +
+            "",nativeQuery = true)
+    List<Publicacion> traerPublicacionesQueOfrecenAlgunoDeMisDeseos(Publicacion miPublicacion);
+    /*de la publicacion extraigo los tipos deseados, los cuales estan vinculados a los tipos deseados de vehiculo
+    y propiedad, ahora debo comparar dichos tipos deseados con los demas en la bd, que a su vez sus propiedades
+    y vehiculos correspondientes tengan deseo en false. y el id de la publicacion sera pasado como parametro
+    *
+    *
+    * */
+    /*
+    traer publicaciones, que tengan deseado de vehiculo false, y cuyo tipo, coincida con mi tipo de
+    vehiculo deseado
+    * */
+
+    List<Publicacion> traerPublicacionesQueDeseanMiPropiedad(Publicacion miPublicacion);
+    List<Publicacion> traerPublicacionesQueOfrecenMiPropiedadDeseada(Publicacion miPublicacion);
+
+
+
 /*
     List<Publicacion> traerTodoOrdenNombrePerfilAsc();
 
@@ -35,4 +70,10 @@ public interface PublicacionRepositorio extends JpaRepository<Publicacion, Long>
     private Propiedad propiedad;
 
     */
+     /*si la propiedad de la publicacion es ofrecida
+            y el tipo de la propiedad de la publicacion coincide con el tipo de todas las propiedades deseadas
+            y alguna propiedad de todas las publicaciones es deseada
+            y el id del perfil de la publicacion es diferente al id de algun perfil de todas las publicaciones
+            entonces tengo todas las publicaciones que desean mi propiedad
+             */
 }

@@ -18,11 +18,11 @@ public class TipoVehiculo {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name="id_tipo_vechiculo")
+    @Column(name="id_tipo_vehiculo")
     private Long id;
 
-    @Column(name="tipo_tipo_vehiculo")
-    private String tipo;
+    @Column(name="nombre_tipo_vehiculo")
+    private String nombre;
 
     @Column(name = "eliminado_tipo_vehiculo", nullable = false)
     private Boolean eliminado;
