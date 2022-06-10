@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)//para establece configuraciones en le manejo de roles
+@EnableGlobalMethodSecurity(prePostEnabled = true)//para establece configuraciones en le manejo de roles,permite limitar el acceso
 @RequiredArgsConstructor
 public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
     private final PerfilServicio perfilServicio;

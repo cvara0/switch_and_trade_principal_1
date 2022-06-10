@@ -1,6 +1,5 @@
 package com.switch_and_trade.switch_and_trade_artifact.controladores;
 
-import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuario;
 import com.switch_and_trade.switch_and_trade_artifact.dtos.NuevoUsuarioDto;
 import com.switch_and_trade.switch_and_trade_artifact.entidades.*;
 import com.switch_and_trade.switch_and_trade_artifact.servicios.LocalidadServicio;
@@ -25,12 +24,11 @@ import java.util.Map;
 @Controller
 @RequestMapping("/usuarios")
 @RequiredArgsConstructor
-public class UsuarioControlador {
-    private final PerfilServicio perfilServicio;
+public class PerfilControlador {
     private final PerfilServicio perfilServicio;
     private final ProvinciaServicio provinciaServicio;
     private final LocalidadServicio localidadServicio;
-    @GetMapping("/formulario-registrarse")
+   /* @GetMapping("/formulario-registrarse")
     public ModelAndView formularioRegistrarse(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, Principal principal) {
         ModelAndView mav = new ModelAndView("formulario-registrarse");
         //mav.addObject("todoProvincia",provinciaServicio.traerTodo());
@@ -84,7 +82,7 @@ public class UsuarioControlador {
         nuevoUsuario.setClave(dto.getClave());
         //nuevoUsuario.setRol();
         nuevoUsuario.setEliminado(false);
-        nuevoUsuario.setPerfil(nuevoPerfil);//que pasa con la clave primaria del nuevo perfil
+
 
         try {
             perfilServicio.insertar(nuevoUsuario);//ya incluye los datos del perfil
@@ -97,5 +95,5 @@ public class UsuarioControlador {
             attributes.addFlashAttribute("error", "Auto login failed");
         }
         return redirect;
-    }
+    }*/
 }

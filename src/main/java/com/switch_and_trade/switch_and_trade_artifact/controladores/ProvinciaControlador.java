@@ -70,14 +70,14 @@ public class ProvinciaControlador {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/restablecer/{id}")
-    public RedirectView enable(@PathVariable Long id) {
+    public RedirectView restablecer(@PathVariable Long id) {
         provinciaServicio.restablecerPorId(id);
-        return new RedirectView("/authors");
+        return new RedirectView("/provincias/tabla");
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/eliminar/{id}")
-    public RedirectView delete(@PathVariable Long id) {
+    public RedirectView eliminar(@PathVariable Long id) {
         RedirectView redirect = new RedirectView("/provincias/tabla");
         provinciaServicio.eliminarPorId(id);
         return redirect;
